@@ -1,4 +1,0 @@
-streamlit を実行するとき　→ streamlit run takaichisousai.py
-画像をサイズ揃えるコマンド → python resize_images.py
-テキストはVSコードから作るのがよい
-写真はいったんphotosに入れて、コマンドで自動でresizedに入る。jpg、ファイル名注意
