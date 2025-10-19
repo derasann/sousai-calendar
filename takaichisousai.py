@@ -75,7 +75,7 @@ if mode == "カード表示":
                 cols = st.columns(min(3, len(img_files)))  # 最大3列
                 for i, img in enumerate(img_files):
                     with cols[i % 3]:
-                        st.image(str(img), use_container_width=True)
+                        st.image(str(img), width="stretch")
             else:
                 st.caption("（画像なし）")
 
@@ -143,8 +143,15 @@ elif mode == "カレンダー表示":
             with cols[i]:
                 if day.month == month:
                     st.markdown(f"<div class='card-date'>{day.day}</div>", unsafe_allow_html=True)
-                    for img in img_files[:1]:  # カレンダーでは1枚目だけ表示
-                        st.image(str(img), use_container_width=True)
+                 
+                    # ✅ 画像（１枚のみ）
+                    img_path = PHOTO_DIR / f"{date_str}.jpg"
+
+                    if img_path.exists():
+                            st.image(str(img_path), use_container_width=True)
+
+
+                    # ✅ テキスト表示
                     if txt_path.exists():
                         with open(txt_path, "r", encoding="utf-8") as f:
                             text = f.read().strip()
