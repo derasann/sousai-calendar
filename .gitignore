@@ -1,2 +1,28 @@
+# === ローカル画像・作業フォルダ ===
 photos/
+photos_resized/
+phototest1/
+phototest2/
+nouse/
+
+# === ローカル専用ファイル ===
+memo
+memo.txt
+
+# === テスト・作業用スクリプト ===
+test1.py
+test2.py
+resize_images_test.py
+recover_texts_final.py
+recover_texts_v2.py
+
+# === Python 仮想環境・キャッシュ ===
+venv/
 __pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# === OS/エディタ関係 ===
+.DS_Store
+.vscode/
