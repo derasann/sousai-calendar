@@ -1,6 +1,6 @@
 # === ローカル画像・作業フォルダ ===
-# photos/
-# photos_resized/
+photos/
+photos_resized/
 phototest1/
 phototest2/
 nouse/
@@ -26,3 +26,4 @@ __pycache__/
 # === OS/エディタ関係 ===
 .DS_Store
 .vscode/
+
