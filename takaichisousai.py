@@ -8,7 +8,7 @@ from pathlib import Path
 PHOTO_DIR = Path("photos_resized")
 TEXT_DIR = Path("texts_recovered_final")
 
-st.set_page_config(page_title="高市新総裁の一日", layout="wide")
+st.set_page_config(page_title="高市総理の一日", layout="wide")
 
 # ===== CSS =====
 st.markdown("""
@@ -51,7 +51,7 @@ html, body, [class*="css"] {
 </style>
 """, unsafe_allow_html=True)
 
-st.title("🗞️ 高市新総裁の一日")
+st.title("🗞️ 高市総理の一日")
 
 # ===== モード選択 =====
 mode = st.radio("表示モードを選択：", ["カード表示", "カレンダー表示"])
