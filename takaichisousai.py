@@ -56,7 +56,7 @@ st.title("🗞️ 高市総理の一日")
 # ===== モード選択 =====
 mode = st.radio("表示モードを選択：", ["カード表示", "カレンダー表示"])
 
-days = sorted(TEXT_DIR.glob("*.txt"))
+days = sorted(TEXT_DIR.glob("*.txt"), reverse=True)
 
 # ===== カード表示 =====
 if mode == "カード表示":
@@ -148,7 +148,7 @@ elif mode == "カレンダー表示":
                     img_path = PHOTO_DIR / f"{date_str}.jpg"
 
                     if img_path.exists():
-                            st.image(str(img_path), use_container_width=True)
+                            st.image(str(img_path), width="stretch")
 
 
                     # ✅ テキスト表示
