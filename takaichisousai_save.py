@@ -5,9 +5,6 @@ import calendar
 import datetime
 from pathlib import Path
 
-# ✅ 就任日（ここを実際の就任日に合わせて変更）
-INAUGURATION_DATE = datetime.date(2025, 10, 21)  # 例：2025-10-1
-
 PHOTO_DIR = Path("photos_resized")
 TEXT_DIR = Path("texts_recovered_final")
 
@@ -133,7 +130,6 @@ elif mode == "カレンダー表示":
     )
 
     # カレンダー生成
-        # ---- カレンダー生成 ----
     cal = calendar.Calendar(firstweekday=6)
     weeks = cal.monthdatescalendar(year, month)
 
@@ -142,40 +138,21 @@ elif mode == "カレンダー表示":
         for i, day in enumerate(week):
             date_str = day.strftime("%Y-%m-%d")
             txt_path = TEXT_DIR / f"{date_str}.txt"
-
-            # 画像は「完全一致」ではなく「前方一致」で拾う（カードと同じ）
             img_files = sorted(PHOTO_DIR.glob(f"{date_str}*.jpg"))
 
             with cols[i]:
-                # 他月の日付は薄く表示（不要なら continue のみにしてOK）
-                if day.month != month:
-                    st.markdown(f"<div style='opacity:0.25'>{day.day}</div>", unsafe_allow_html=True)
-                    continue
+                if day.month == month:
+                    st.markdown(f"<div class='card-date'>{day.day}</div>", unsafe_allow_html=True)
+                 
+                    # ✅ 画像（１枚のみ）
+                    img_path = PHOTO_DIR / f"{date_str}.jpg"
 
-                # 日付
-                st.markdown(f"<div class='card-date'>{day.day}</div>", unsafe_allow_html=True)
+                    if img_path.exists():
+                            st.image(str(img_path), width="stretch")
 
-                # ✅ データがあるか判定
-                has_text = txt_path.exists()
-                has_img = len(img_files) > 0
 
-                # ✅ 表示ラベル（データがある日だけ）
-                if has_text or has_img:
-                    # 10/4〜10/20 だけ「総裁就任」
-                    if datetime.date(2025, 10, 4) <= day <= datetime.date(2025, 10, 20):
-                        st.markdown(
-                            "<div style='font-size:0.75rem; opacity:0.85;'>総裁就任</div>",
-                            unsafe_allow_html=True
-                         )
-                    
-                    # 10/21以降は「就任◯日目」
-                    elif day >= INAUGURATION_DATE:
-                        nth_day = (day - INAUGURATION_DATE).days + 1
-                        st.markdown(
-                             f"<div style='font-size:0.75rem; opacity:0.85;'>総理就任{nth_day}日目</div>",
-                             unsafe_allow_html=True
-                         )
-
-                # 画像：1枚だけ（就任前でも表示）
-                if has_img:
-                    st.image(str(img_files[0]), width="stretch")
+                    # ✅ テキスト表示
+                    if txt_path.exists():
+                        with open(txt_path, "r", encoding="utf-8") as f:
+                            text = f.read().strip()
+                        st.caption(text[:40] + "..." if len(text) > 40 else text)

@@ -1,0 +1,67 @@
+最初
+🔹 1️⃣ 仮想環境の起動
+pwd → /Users/program を確認。これであれば　source venv39/bin/activate
+左側に (venv39) と出ていればOK。
+
+
+🔹 2️⃣ 新しい写真とテキストを追加
+写真 → phototest1 / フォルダへ
+テキスト（UTF-8形式） → texts_recovered_final/ フォルダへ
+
+2025-10-20.jpg のようにする
+
+
+🔹 3️⃣ 写真をリサイズ（縦横統一）
+python resize_images_test.py  (これで、phototest1　に入れた写真を phototest2 へ切り出す）
+その後、確認してから手動で photos_resised へドラッグ。ファイル名も注意、数字なしが最初の１枚になる
+
+
+🔹 4️⃣ Streamlitで確認
+streamlit run takaichisousai.py
+
+
+🔹 5️⃣ 問題なければGitHubへアップロード
+git add .
+git commit -m "update photos and texts for this week"
+git push origin main
+
+
+🔹 6️⃣ Streamlit Cloudで再デプロイ
+
+https://share.streamlit.io
+にアクセスして、
+デプロイ済みアプリの右上にある “Rerun” または “Restart app” ボタンを押すだけで更新が反映されます。
+（GitHubにpushしたタイミングで自動的に更新される場合もあります。）
+
+
+💾 バックアップのおすすめ（オプション）
+リサイズ実行前に元の写真を安全にコピー：
+
+cp -r photos_resized photos_backup_$(date +%Y%m%d)
+
+
+
+
+streamlit を実行するとき　→ streamlit run takaichisousai.py
+
+
+Python resize_images_test.py のコマンドを実行すると、写真はいったんphotos1に入れて、phototest2に出力。確認したら手動で本番フォルダにドラッグが良い。テキストはVSコードから作るのがよい
+jpg、ファイル名注意
+
+Ctrl + C　でターミナルを抜ける
+
+===================================================
+
+🚀 Streamlit Cloud にデプロイするための GitHub 反映手順
+deactivate　（venvから抜ける）
+cd /Users/program
+git status
+git add .
+git commit -m "weekly update"
+git push origin main
+
+
+🌐 7️⃣ Streamlit Cloud で確認
+https://share.streamlit.io
+あなたのアプリ（sousai-calendar）を開く
+「⚙️」アイコン → 「Rerun」または「Always rerun on push」を選択
