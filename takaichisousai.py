@@ -55,7 +55,7 @@ html, body, [class*="css"] {
 """, unsafe_allow_html=True)
 
 st.title("🗞️ 高市総理の一日")
-
+st.caption("by NODERA チーム早苗みやぎ — [youtube.com/@NODERASANTV](https://www.youtube.com/@NODERASANTV)")
 # ===== モード選択 =====
 mode = st.radio("表示モードを選択：", ["カード表示", "カレンダー表示"])
 
